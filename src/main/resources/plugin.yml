@@ -1,0 +1,10 @@
+main: io.github.xdgs.xdgscommons.XDGSCommons
+
+name: XDGSCommons
+authors: [ GStudiosX, KudaXD ]
+description: XDGSCommons a library/utillity plugin for XDGS plugins.
+
+api-version: 1.13
+version: 1.0
+
+softdepend: [ Vault ]
