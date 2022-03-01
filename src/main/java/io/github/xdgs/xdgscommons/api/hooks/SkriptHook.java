@@ -1,6 +1,7 @@
 package io.github.xdgs.xdgscommons.api.hooks;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.lang.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -11,6 +12,7 @@ public class SkriptHook implements Hook {
     private final JavaPlugin plugin;
 
     private Plugin SkriptPlugin;
+    private SkriptAddon skriptAddon;
     private String versionRequired = "2.5";
     private boolean HasSkript;
 
@@ -49,7 +51,7 @@ public class SkriptHook implements Hook {
         if ((version == null && HasSkript) ||
                 (version != null && HasSkript(version))) {
             this.versionRequired = version;
-            Skript.registerAddon(plugin);
+            skriptAddon = Skript.registerAddon(plugin);
         } else {  this.versionRequired = "none"; }
     }
 
@@ -88,5 +90,9 @@ public class SkriptHook implements Hook {
 
     public String getVersionRequired() {
         return versionRequired;
+    }
+
+    public SkriptAddon getSkriptAddon() {
+        return skriptAddon;
     }
 }
