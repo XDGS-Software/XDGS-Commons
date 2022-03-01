@@ -29,7 +29,7 @@ public class PlaceholderApiHook extends PlaceholderExpansion implements Hook {
     }
 
     @Override
-    public void initHook(Object... args) {
+    public void init(Object... args) {
         this.register();
     }
 

@@ -11,7 +11,7 @@ public class SkriptHook implements Hook {
     }
 
     @Override
-    public void initHook(Object... args) {
+    public void init(Object... args) {
 
     }
 

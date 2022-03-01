@@ -18,7 +18,7 @@ public class VaultHook implements Hook {
     }
 
     @Override
-    public void initHook(Object... args) {
+    public void init(Object... args) {
         boolean enforceVault = false;
         if (args.length > 0 && args[0] instanceof Boolean) {
             enforceVault = (boolean)args[0];
