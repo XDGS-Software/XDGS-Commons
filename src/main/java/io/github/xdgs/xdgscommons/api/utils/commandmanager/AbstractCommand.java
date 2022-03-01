@@ -94,4 +94,9 @@ public abstract class AbstractCommand extends Command implements TabCompleter {
     public JavaPlugin getPlugin() {
         return plugin;
     }
+
+    @Override
+    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+        return onTabComplete(commandSender, s, strings);
+    }
 }
