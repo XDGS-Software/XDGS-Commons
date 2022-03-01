@@ -1,6 +1,7 @@
 package io.github.xdgs.xdgscommons.api.hooks;
 
 import io.github.xdgs.xdgscommons.api.hooks.placeholderapi.PlaceholderMethod;
+import io.github.xdgs.xdgscommons.api.utils.Hook;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
@@ -11,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 
 public class PlaceholderApiHook extends PlaceholderExpansion implements Hook {
-    private final JavaPlugin plugin;
-    private final HashMap<String, PlaceholderMethod> placeholders = new HashMap<>();
+    private JavaPlugin plugin;
+    private HashMap<String, PlaceholderMethod> placeholders = new HashMap<>();
 
     public PlaceholderApiHook(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -31,6 +32,13 @@ public class PlaceholderApiHook extends PlaceholderExpansion implements Hook {
     @Override
     public void init(Object... args) {
         this.register();
+    }
+
+    @Override
+    public void dispose() {
+        plugin = null;
+        placeholders = null;
+        this.unregister();
     }
 
     public String placeholders(OfflinePlayer player, String text) {

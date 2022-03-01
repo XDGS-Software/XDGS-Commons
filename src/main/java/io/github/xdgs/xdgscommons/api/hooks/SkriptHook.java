@@ -3,13 +3,14 @@ package io.github.xdgs.xdgscommons.api.hooks;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.lang.*;
+import io.github.xdgs.xdgscommons.api.utils.Hook;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SkriptHook implements Hook {
-    private final JavaPlugin plugin;
+    private JavaPlugin plugin;
 
     private Plugin SkriptPlugin;
     private SkriptAddon skriptAddon;
@@ -53,6 +54,14 @@ public class SkriptHook implements Hook {
             this.versionRequired = version;
             skriptAddon = Skript.registerAddon(plugin);
         } else {  this.versionRequired = "none"; }
+    }
+
+    @Override
+    public void dispose() {
+        plugin = null;
+        SkriptPlugin = null;
+        skriptAddon = null;
+        versionRequired = null;
     }
 
     public <E extends Effect> void registerEffect(Class<E> c, String... patterns) {
