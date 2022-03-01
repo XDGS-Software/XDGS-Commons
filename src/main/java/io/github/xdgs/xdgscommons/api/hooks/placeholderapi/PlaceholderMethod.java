@@ -1,4 +1,4 @@
-package io.github.xdgs.xdgscommons.hooks.placeholderapi;
+package io.github.xdgs.xdgscommons.api.hooks.placeholderapi;
 
 import org.bukkit.OfflinePlayer;
 

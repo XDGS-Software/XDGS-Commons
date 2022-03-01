@@ -1,4 +1,4 @@
-package io.github.xdgs.xdgscommons.hooks;
+package io.github.xdgs.xdgscommons.api.hooks;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;

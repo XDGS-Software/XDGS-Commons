@@ -1,4 +1,4 @@
-package io.github.xdgs.xdgscommons.hooks;
+package io.github.xdgs.xdgscommons.api.hooks;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

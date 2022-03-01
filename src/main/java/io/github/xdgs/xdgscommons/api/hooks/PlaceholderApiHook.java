@@ -1,6 +1,6 @@
-package io.github.xdgs.xdgscommons.hooks;
+package io.github.xdgs.xdgscommons.api.hooks;
 
-import io.github.xdgs.xdgscommons.hooks.placeholderapi.PlaceholderMethod;
+import io.github.xdgs.xdgscommons.api.hooks.placeholderapi.PlaceholderMethod;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
