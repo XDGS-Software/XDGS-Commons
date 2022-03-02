@@ -6,7 +6,7 @@ public class CommandManager {
     private HashMap<String, AbstractCommand> commands = new HashMap<>();
     
     public boolean registerCommand(AbstractCommand command) {
-        commands.put(command.getID(), command);
+        commands.put(command.getName(), command);
         return CommandMapUtils.registerCommand(command);
     }
 
@@ -16,7 +16,7 @@ public class CommandManager {
     }
 
     public boolean unregisterCommand(AbstractCommand command) {
-        commands.remove(command.getID());
+        commands.remove(command.getName());
         return CommandMapUtils.unregisterCommand(command);
     }
     
