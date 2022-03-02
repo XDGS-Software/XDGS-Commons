@@ -36,9 +36,9 @@ public class PlaceholderApiHook extends PlaceholderExpansion implements Hook {
 
     @Override
     public void dispose() {
+        this.unregister();
         plugin = null;
         placeholders = null;
-        this.unregister();
     }
 
     public String placeholders(OfflinePlayer player, String text) {
