@@ -33,7 +33,7 @@ public class CommandMapUtils {
     }
 
     public static boolean registerCommand(AbstractCommand command) {
-        return commandMap.register(command.getID(), command);
+        return commandMap.register(command.getName(), command);
     }
 
     public static boolean unregisterCommand(String command) {
@@ -41,7 +41,7 @@ public class CommandMapUtils {
     }
 
     public static boolean unregisterCommand(AbstractCommand command) {
-        return unregisterCommand(command.getID());
+        return unregisterCommand(command.getName());
     }
 
     public static CommandMap getCommandMap() {
