@@ -26,7 +26,7 @@ public class CommandMapUtils {
                 knownCommandsField = commandMap.getClass().getSuperclass().getDeclaredField("knownCommands");
             }
             knownCommandsField.setAccessible(true);
-            knownCommands = (HashMap<String, Command>) knownCommandsField.get(Bukkit.getServer());
+            knownCommands = (HashMap<String, Command>) knownCommandsField.get(commandMap);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }

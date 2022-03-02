@@ -3,7 +3,7 @@ package io.github.xdgs.xdgscommons.api.utils.commandmanager;
 import java.util.HashMap;
 
 public class CommandManager {
-    private HashMap<String, AbstractCommand> commands = new HashMap<String, AbstractCommand>();
+    private HashMap<String, AbstractCommand> commands = new HashMap<>();
     
     public boolean registerCommand(AbstractCommand command) {
         commands.put(command.getID(), command);
