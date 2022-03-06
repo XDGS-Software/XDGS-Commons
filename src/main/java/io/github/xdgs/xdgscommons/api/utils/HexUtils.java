@@ -1,4 +1,4 @@
-package io.github.xdgs.xdgscommons.api.utils.colorutils;
+package io.github.xdgs.xdgscommons.api.utils;
 
 public class HexUtils {
     public static String nToHex(int n) {

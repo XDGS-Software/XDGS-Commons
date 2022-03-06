@@ -20,11 +20,13 @@ public class CommandMapUtils {
             commandMap = (SimpleCommandMap) commandMapField.get(Bukkit.getServer());
 
             Field knownCommandsField;
+
             try {
-                knownCommandsField = commandMap.getClass().getDeclaredField("knownCommands");
+                knownCommandsField = commandMap.getClass().getDeclaredField("knownCommands"); // below 1.13
             } catch (NoSuchFieldException e) {
-                knownCommandsField = commandMap.getClass().getSuperclass().getDeclaredField("knownCommands");
+                knownCommandsField = commandMap.getClass().getSuperclass().getDeclaredField("knownCommands"); // 1.13+
             }
+
             knownCommandsField.setAccessible(true);
             knownCommands = (HashMap<String, Command>) knownCommandsField.get(commandMap);
         } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -33,7 +35,7 @@ public class CommandMapUtils {
     }
 
     public static boolean registerCommand(AbstractCommand command) {
-        return commandMap.register(command.getName(), command);
+        return commandMap.register(command.getPlugin().getDescription().getName(), command);
     }
 
     public static boolean unregisterCommand(String command) {
