@@ -66,4 +66,13 @@ public class Config {
         this.file = null;
         this.config = null;
     }
+
+    public void defaultV(String id, Object value) {
+        if (this.getConfig() == null) return;
+        if (id == null) return;
+        if (value == null) return;
+        if (!config.contains(id)) {
+            config.set(id, value);
+        }
+    }
 }

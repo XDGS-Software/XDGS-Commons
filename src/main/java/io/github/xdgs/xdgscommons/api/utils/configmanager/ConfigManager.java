@@ -14,7 +14,12 @@ public class ConfigManager {
         return this.configMap.remove(id);
     }
     public Config create(String id, String filePath) {
-        return set(id, new Config(filePath));
+        Config config = new Config(filePath);
+        set(id, config);
+        return config;
+    }
+    public Config get(String id) {
+        return configMap.get(id);
     }
 
     public void dispose() {
