@@ -40,9 +40,15 @@ public abstract class SubCommandedCommand extends AbstractCommand {
         return subCommandHashMap.remove(subCommandName);
     }
 
+    public abstract List<String> subCommandTabComplete(CommandSender sender, String subcommand, String[] args);
+
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, Command command, @NotNull String alias, @NotNull String[] args) {
-        if (subCommandHashMap.keySet().size() > 0) return List.of(subCommandHashMap.keySet().toArray(String[]::new));
+        if (subCommandHashMap.keySet().size() > 1) {
+            return subCommandTabComplete(sender, args[0], List.of(args).subList(1, args.length).toArray(String[]::new));
+        } else if (subCommandHashMap.keySet().size() > 0) {
+            return List.of(subCommandHashMap.keySet().toArray(String[]::new));
+        }
         return null;
     }
 

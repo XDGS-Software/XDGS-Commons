@@ -27,16 +27,11 @@ public class CommandUtils {
                 entities.add(Bukkit.getOnlinePlayers().toArray(Entity[]::new)[(int) (Math.random() * Bukkit.getOnlinePlayers().size())]);
                 break;
             case "@e":
-                // loops through all the worlds and adds the entities in that world to the enetities list
+                // loops through all the worlds and adds the entities in that world to the entities list
                 for (World world : Bukkit.getWorlds()) entities.addAll(world.getEntities());
                 break;
             default:
                 Entity entity = Bukkit.getServer().getPlayer(arg);
-
-//                Player[] players = Arrays.stream(Bukkit.getOnlinePlayers()
-//                                .toArray(Player[]::new)).filter((e) -> e.getName().startsWith(arg))
-//                        .toArray(Player[]::new);
-//                entity = players.length > 0 ? players[0] : null;
 
                 try {
                     // tries to get entity by arg (assuming arg is uuid) only if entity is null
