@@ -10,10 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class SubCommandedCommand extends AbstractCommand {
-    public HashMap<String, SubCommand> subCommandHashMap = new HashMap<>();
+    private String noSubCommandUsage;
+    private final HashMap<String, SubCommand> subCommandHashMap = new HashMap<>();
 
     public SubCommandedCommand(JavaPlugin plugin, String name) {
         super(plugin, name);
+        noSubCommandUsage = "/" + name + " <subCommands>";
     }
 
     @Override
@@ -22,11 +24,15 @@ public abstract class SubCommandedCommand extends AbstractCommand {
             if (subCommandHashMap.containsKey(args[0])) {
                 return subCommandHashMap.get(args[0]).run(commandSender, command, List.of(args).subList(1, args.length));
             }
+        } else {
+            commandSender.sendMessage(noSubCommandUsage.replaceAll("<subCommands>",
+                    "(" + String.join("|", List.of(subCommandHashMap.keySet().toArray(String[]::new)) + ")"
+                    )));
         }
         return true;
     }
 
-    public void putSubCommand(String subCommandName, SubCommand subCommand) {
+    public void addSubCommand(String subCommandName, SubCommand subCommand) {
         subCommandHashMap.put(subCommandName, subCommand);
     }
 
@@ -38,5 +44,17 @@ public abstract class SubCommandedCommand extends AbstractCommand {
     public List<String> onTabComplete(@NotNull CommandSender sender, Command command, @NotNull String alias, @NotNull String[] args) {
         if (subCommandHashMap.keySet().size() > 0) return List.of(subCommandHashMap.keySet().toArray(String[]::new));
         return null;
+    }
+
+    public HashMap<String, SubCommand> getSubCommandHashMap() {
+        return subCommandHashMap;
+    }
+
+    public String getNoSubCommandUsage() {
+        return noSubCommandUsage;
+    }
+
+    public void setNoSubCommandUsage(String noSubCommandUsage) {
+        this.noSubCommandUsage = noSubCommandUsage;
     }
 }
