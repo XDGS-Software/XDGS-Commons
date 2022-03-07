@@ -76,17 +76,17 @@ public class SkriptHook implements Hook {
     public <E extends Condition> void registerCondition(Class<E> c, String... patterns) {
         Skript.registerCondition(c, patterns);
     }
-    public <E extends SkriptEvent> void registerEvent(String name,
-                                                      Class<E> c,
-                                                      Class<? extends Event> event,
-                                                      String... patterns) {
-        Skript.registerEvent(name, c, event, patterns);
+    public <E extends SkriptEvent> SkriptEventInfo<E> registerEvent(String name,
+                                                                    Class<E> c,
+                                                                    Class<? extends Event> event,
+                                                                    String... patterns) {
+        return Skript.registerEvent(name, c, event, patterns);
     }
-    public <E extends SkriptEvent> void registerEvent(String name,
-                                                      Class<E> c,
-                                                      Class<? extends Event>[] events,
-                                                      String... patterns) {
-        Skript.registerEvent(name, c, events, patterns);
+    public <E extends SkriptEvent> SkriptEventInfo<E> registerEvent(String name,
+                                                                    Class<E> c,
+                                                                    Class<? extends Event>[] events,
+                                                                    String... patterns) {
+        return Skript.registerEvent(name, c, events, patterns);
     }
     public void registerSection(Class<Section> section, String... patterns) {
         if (HasSkript("2.6"))
