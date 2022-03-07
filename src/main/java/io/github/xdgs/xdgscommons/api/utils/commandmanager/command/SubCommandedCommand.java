@@ -20,7 +20,7 @@ public abstract class SubCommandedCommand extends AbstractCommand {
     public boolean Execute(CommandSender commandSender, String command, String[] args) {
         if (args.length > 0) {
             if (subCommandHashMap.containsKey(args[0])) {
-                return subCommandHashMap.get(args[0]).run();
+                return subCommandHashMap.get(args[0]).run(commandSender, command, List.of(args).subList(1, args.length));
             }
         }
         return true;
