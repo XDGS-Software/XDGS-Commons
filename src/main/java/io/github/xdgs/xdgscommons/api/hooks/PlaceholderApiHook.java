@@ -36,7 +36,7 @@ public class PlaceholderApiHook extends PlaceholderExpansion implements Hook {
 
     @Override
     public void dispose() {
-        this.unregister();
+//        this.unregister();
         plugin = null;
         placeholders = null;
     }
