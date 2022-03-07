@@ -44,12 +44,11 @@ public abstract class SubCommandedCommand extends AbstractCommand {
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, Command command, @NotNull String alias, @NotNull String[] args) {
-        if (subCommandHashMap.keySet().size() > 1) {
+        if (args.length > 1) {
             return subCommandTabComplete(sender, args[0], List.of(args).subList(1, args.length).toArray(String[]::new));
-        } else if (subCommandHashMap.keySet().size() > 0) {
+        } else {
             return List.of(subCommandHashMap.keySet().toArray(String[]::new));
         }
-        return null;
     }
 
     public HashMap<String, SubCommand> getSubCommandHashMap() {
