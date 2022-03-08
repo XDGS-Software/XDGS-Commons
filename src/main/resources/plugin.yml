@@ -8,3 +8,6 @@ api-version: 1.13
 version: 1.0
 
 softdepend: [ Vault ]
+loadbefore:
+  - Skript
+load: STARTUP

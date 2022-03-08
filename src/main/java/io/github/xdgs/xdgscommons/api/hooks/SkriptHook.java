@@ -22,26 +22,33 @@ public class SkriptHook implements Hook {
         HasSkript();
     }
 
+    public boolean checkVersion(String version, int v) {
+        boolean ret = false;
+        if (SkriptPlugin != null) {
+            String[] skriptV = SkriptPlugin.getDescription().getVersion().split("\\.");
+            String[] checkV = version.split("\\.");
+            for (int i = 0; i < v; i++) {
+                int sv = (skriptV.length > i ? Integer.parseInt(skriptV[i]) : 0);
+                int cv = (checkV.length > i ? Integer.parseInt(checkV[i]) : 0);
+                ret = (sv >= cv);
+            }
+        }
+        return ret;
+    }
+
     public boolean HasSkript() {
-        if (SkriptPlugin == null)
-            SkriptPlugin = Bukkit.getPluginManager().getPlugin("Skript");
+        if (SkriptPlugin == null) SkriptPlugin = Bukkit.getPluginManager().getPlugin("Skript");
         HasSkript = SkriptPlugin != null;
         return HasSkript;
     }
+
     public boolean HasSkript(String version) {
         if (version.equals("none")) return false;
         boolean hasSkript = SkriptPlugin != null;
         if (SkriptPlugin == null)
             hasSkript = HasSkript();
         if (hasSkript) {
-            String v = SkriptPlugin.getDescription().getVersion();
-            if (version.split("\\.").length - 1 <= 1) {
-                String[] vv = v.split("\\.");
-                String[] vvv = version.split("\\.");
-                return Integer.parseInt(vv[0]) == Integer.parseInt(vvv[0]) &&
-                        Integer.parseInt(vv[1]) == Integer.parseInt(vvv[1]);
-            }
-            return v.startsWith(version);
+            return checkVersion(version, 3);
         }
         return false;
     }
