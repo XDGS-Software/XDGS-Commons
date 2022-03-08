@@ -15,6 +15,7 @@ public class CommandUtils {
         List<Entity> entities = new ArrayList<>(); // initialize entities return list
         switch (arg) {
             case "@p":
+            case "@s":
                 // gets the player who executed the command
                 entities.add(executor);
                 break;
