@@ -24,8 +24,8 @@ jobs:
         name: xdgs-commons-nightly
         path: target/XDGS-Commons-nightly.jar
     - name: Upload Nightly Build Javadoc
-        uses: actions/upload-artifact@v1
-        if: success()
-        with:
-          name: xdgs-commons-nightly-javadoc
-          path: target/XDGS-Commons-nightly-javadoc.jar
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: xdgs-commons-nightly-javadoc
+        path: target/XDGS-Commons-nightly-javadoc.jar
