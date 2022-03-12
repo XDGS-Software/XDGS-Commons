@@ -26,7 +26,7 @@ public abstract class SubCommandedCommand extends AbstractCommand {
             }
         } else {
             commandSender.sendMessage(noSubCommandUsage.replaceAll("<subCommands>",
-                    "(" + String.join("|", List.of(subCommandHashMap.keySet().toArray(String[]::new)) + ")"
+                    String.join("|", List.of(subCommandHashMap.keySet().toArray(String[]::new))
                     )));
         }
         return true;

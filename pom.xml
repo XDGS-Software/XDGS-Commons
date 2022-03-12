@@ -17,6 +17,7 @@
     </properties>
 
     <build>
+        <finalName>XDGS-Commons-nightly</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
