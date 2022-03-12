@@ -26,13 +26,11 @@ public abstract class SubCommandedSubCommand implements SubCommand, TabCompleter
         }
 
         if (subCommandHashMap.containsKey(args.get(0))) {
-            return runSub(commandSender, args.get(0), args);
+            return subCommandHashMap.get(args.get(0)).run(commandSender, command, args);
         }
 
         return true;
     }
-
-    public abstract boolean runSub(CommandSender commandSender, String subCommand, List<String> args);
 
     public void addSubCommand(String subCommandName, SubCommand subCommand) {
         subCommandHashMap.put(subCommandName, subCommand);
