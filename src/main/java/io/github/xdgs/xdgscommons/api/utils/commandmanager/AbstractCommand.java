@@ -77,29 +77,23 @@ public abstract class AbstractCommand extends Command implements TabCompleter {
 
     public abstract List<String> onTabComplete(@NotNull CommandSender sender, Command command, @NotNull String alias, @NotNull String[] args);
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public java.util.List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws CommandException, IllegalArgumentException {
-        Validate.notNull(sender, "Sender cannot be null");
-        Validate.notNull(args, "Arguments cannot be null");
-        Validate.notNull(alias, "Alias cannot be null");
-
+        Validate.notNull(sender, "CommandSender cannot be null");
+        Validate.notNull(args, "Command arguments cannot be null");
+        Validate.notNull(alias, "Command alias cannot be null");
         List<String> completions = null;
-
         try {
-            if (completer != null) completions = completer.onTabComplete(sender, this, alias, args);
-            if (completions == null && executor instanceof TabCompleter) completions = ((TabCompleter) executor).onTabComplete(sender, this, alias, args);
-        } catch (Throwable ex) {
-            StringBuilder message = new StringBuilder();
-            message.append("Unhandled exception during tab completion for command '/").append(alias).append(' ');
-            for (String arg : args) message.append(arg).append(' ');
-            message.deleteCharAt(message.length() - 1).append("' in plugin ").append(plugin.getDescription().getFullName());
-            throw new CommandException(message.toString(), ex);
+            if (completer != null)
+                completions = completer.onTabComplete(sender, this, alias, args);
+            if (completions == null && executor instanceof TabCompleter)
+                completions = ((TabCompleter)executor).onTabComplete(sender, this, alias, args);
+        } catch (Exception ex) {
+            throw new CommandException("Unhandled exception during tab completion for command '/" + alias, ex);
         }
-
-        if (completions == null) {
+        if (completions == null)
             return super.tabComplete(sender, alias, args);
-        }
-
         return completions;
     }
 
