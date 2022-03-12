@@ -33,6 +33,9 @@ public abstract class SubCommandedCommand extends AbstractCommand {
     }
 
     public void addSubCommand(String subCommandName, SubCommand subCommand) {
+        if (subCommand instanceof SubCommandedSubCommand) {
+            ((SubCommandedSubCommand) subCommand).setParent(this);
+        }
         subCommandHashMap.put(subCommandName, subCommand);
     }
 

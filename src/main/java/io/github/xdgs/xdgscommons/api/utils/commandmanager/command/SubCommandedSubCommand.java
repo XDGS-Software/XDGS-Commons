@@ -14,9 +14,7 @@ public abstract class SubCommandedSubCommand implements SubCommand, TabCompleter
     private TabCompleter completer;
     private final HashMap<String, SubCommand> subCommandHashMap = new HashMap<>();
 
-    public SubCommandedSubCommand(String name) {
-        noSubCommandUsage = "/" + name + " ...";
-    }
+    public SubCommandedSubCommand() {}
 
     @Override
     public boolean run(CommandSender commandSender, String command, List<String> args) {
@@ -64,6 +62,7 @@ public abstract class SubCommandedSubCommand implements SubCommand, TabCompleter
         this.parent = parent;
         completer = parent.getTabCompleter();
         parent.setTabCompleter(this);
+        noSubCommandUsage = "/" + this.parent.getName() + " ...";
     }
 
     @Override
